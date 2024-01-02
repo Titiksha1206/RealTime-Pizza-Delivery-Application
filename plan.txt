@@ -1,0 +1,14 @@
+step 1 - create directory structure (all files and folders).
+
+         -public folder =  css folder(app.css file) , img folder and js folder(app.js file).
+
+         -resources folder =  js folder(app.js file) , scss folder(app.scss file) and views folder.
+
+         -src folder =  routes folder(api.js file and web.js file) , config folder ,models folder and http folder(middlewares and controllers folder).
+
+step 2 - create a npm project and install all dependencies.
+
+       - express , ejs , express-ejs-layouts
+       - nodemon
+
+step 3 - create Express server - create a server.js file.

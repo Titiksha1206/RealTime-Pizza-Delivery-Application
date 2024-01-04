@@ -1,100 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- sirph wahi chize rkhni h jo hmne layout.ejs file se delete kri thi, kyuki baaki ki chize hme layout.ejs file se mill jayegi. -->
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealTime Pizza Delivery Application</title>
-    <!-- tailwind css -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- google font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <!-- css link -->
-    <link rel="stylesheet" href="/css/app.css">
-    <!-- bootstrap link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-</head>
+<section class="hero py-16">
+    <div class="container mx-auto flex items-center justify-between">
+        <div class="w-1/2">
+            <h6 class="text-lg"><em>Are you hungry?</em></h6>
+            <h1 class="text-3xl md:text-6xl font-bold">Don't wait !</h1>
+            <button class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary">Order Now</button>
+        </div>
+        <div class="w-1/2">
+            <img src="/img/hero-pizza.png" alt="">
+        </div>
+    </div>
+</section>
 
-<body>
 
-    <body>
-        <nav class="container mx-auto flex items-center justify-between py-4 ">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="/img/logo.png" alt="Logo" width="37" height="26" class="d-inline-block align-text-top">
-                    Doughlicious Pizza Palette
-                </a>
-            </div>
-            <div>
-                <ul class="flex items-center">
-
-                    <li class="ml-6 "><a href="/">Menu</a></li>
-                    <li class="ml-6">
-                        <form id="logout" action="/logout" method="POST">
-                            <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
-                        </form>
-                    </li>
-                    <li class="ml-6"><a href="/register">Register</a></li>
-                    <li class="ml-6"><a href="/login">Login</a></li>
-                    <li class="ml-6"><a href="/cart" class="inline-block px-4 py-2 rounded-full flex items-center">
-                            <span id="cartCounter" class="text-white font-bold pr-2">
-                            </span>
-                            <img src="/img/cart.png" alt="">
-                        </a></li>
-                </ul>
-            </div>
-        </nav>
-        <section class="hero py-16">
-            <div class="container mx-auto flex items-center justify-between">
-                <div class="w-1/2">
-                    <h6 class="text-lg"><em>Are you hungry?</em></h6>
-                    <h1 class="text-3xl md:text-6xl font-bold">Don't wait !</h1>
-                    <button class="px-6 py-2 rounded-full text-white font-bold mt-4 btn-primary">Order Now</button>
-                </div>
-                <div class="w-1/2">
-                    <img src="/img/hero-pizza.png" alt="">
+<section class="menu container mx-auto py-8">
+    <h1 class="text-xl font-bold mb-8">All Pizzas</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
+        <div class="w-full md:w-64">
+            <img class="h-40 mb-4 mx-auto" src="/img/Cheese-Pizza-Transparent-File.png" alt="">
+            <div class="text-center">
+                <h2 class="mb-4 text-lg"> Margherita</h2>
+                <span class="size py-1 px-4 rounded-full uppercase text-xs">small</span>
+                <div class="flex items-center justify-around mt-6">
+                    <span class="font-bold text-lg">₹ 250</span>
+                    <button data-pizza="%= JSON.stringify(pizza) %>"
+                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
+                        <span>+</span>
+                        <span class="ml-4">Add</span>
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="menu container mx-auto py-8">
-            <h1 class="text-xl font-bold mb-8">All Pizzas</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
-                <div class="w-full md:w-64">
-                    <img class="h-40 mb-4 mx-auto" src="/img/Cheese-Pizza-Transparent-File.png" alt="">
-                    <div class="text-center">
-                        <h2 class="mb-4 text-lg"> Margherita</h2>
-                        <span class="size py-1 px-4 rounded-full uppercase text-xs">small</span>
-                        <div class="flex items-center justify-around mt-6">
-                            <span class="font-bold text-lg">₹ 250</span>
-                            <button data-pizza="%= JSON.stringify(pizza) %>"
-                                class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                                <span>+</span>
-                                <span class="ml-4">Add</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <footer></footer>
-        <script src="/socket.io/socket.io.js"></script>
-
-        <!-- js link -->
-        <script src="/js/app.js"></script>
-    </body>
-
-</html>
+    </div>
+</section>

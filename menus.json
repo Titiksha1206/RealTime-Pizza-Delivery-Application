@@ -2,7 +2,7 @@
     "_id": {
       "$oid": "5eee651f739f8c674fd736ee"
     },
-    "name": "Margherita",
+    "name": "Margherita Pizza",
     "image": "pizza.png",
     "price": "250",
     "size": "small"
@@ -10,56 +10,56 @@
     "_id": {
       "$oid": "5eee6671a27a66807cf2bea3"
     },
-    "name": "Marinara",
-    "image": "pizza.png",
+    "name": "Non Veg Supreme Pizza",
+    "image":"chicken-supreme.png",
     "price": "300",
     "size": "medium"
   },{
     "_id": {
       "$oid": "5eee6692a27a66807cf2bea4"
     },
-    "name": "Carbonara",
-    "image": "pizza.png",
+    "name": " Hawaiian Pizza",
+    "image": "Hawaiian-Pizza.png",
     "price": "200",
     "size": "small"
   },{
     "_id": {
       "$oid": "5eee66a5a27a66807cf2bea5"
     },
-    "name": "Americana",
-    "image": "pizza.png",
+    "name": "Kebab Buffalo Wing Pizza",
+    "image": "kebab-buffalo-wing-delicious-pizza.png",
     "price": "500",
     "size": "large"
   },{
     "_id": {
       "$oid": "5eee66c4a27a66807cf2bea6"
     },
-    "name": "Chicken Mushroom",
-    "image": "pizza.png",
+    "name": "BBQ Chicken Pizza",
+    "image": "chicken-pizza.png",
     "price": "350",
     "size": "medium"
   },{
     "_id": {
       "$oid": "5eee66cfa27a66807cf2bea7"
     },
-    "name": "Paneer pizza",
-    "image": "pizza.png",
+    "name": "Non Veg Loaded Pizza",
+    "image": "overloaded-nonveg.png",
     "price": "200",
     "size": "small"
   },{
     "_id": {
       "$oid": "5eee66eea27a66807cf2bea8"
     },
-    "name": "Vegies pizza",
-    "image": "pizza.png",
+    "name": "Veggie Pizza",
+    "image": "veggiee.png",
     "price": "600",
     "size": "large"
   },{ 
     "_id": {
       "$oid": "5eee6717a27a66807cf2bea9"
     },
-    "name": "Pepperoni",
-    "image": "pizza.png",
+    "name": "Pepperoni Pizza",
+    "image": "Pepperoni.jpg",
     "price": "500",
     "size": "medium"
   }]

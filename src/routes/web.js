@@ -10,14 +10,12 @@ function initRoutes(app) {
     "/login",
     authController().login
     // display login page.
-    // res.render("auth/login");
   );
 
   app.get(
     "/register",
     authController().register
     // display register page.
-    // res.render("auth/register");
   );
 
   app.get(

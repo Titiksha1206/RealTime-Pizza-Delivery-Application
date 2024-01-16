@@ -18,21 +18,31 @@
 <section class="menu container mx-auto py-8">
     <h1 class="text-xl font-bold mb-8">All Pizzas</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16">
-        <div class="w-full md:w-64">
-            <img class="h-40 mb-4 mx-auto" src="/img/Cheese-Pizza-Transparent-File.png" alt="">
-            <div class="text-center">
-                <h2 class="mb-4 text-lg"> Margherita</h2>
-                <span class="size py-1 px-4 rounded-full uppercase text-xs">small</span>
-                <div class="flex items-center justify-around mt-6">
-                    <span class="font-bold text-lg">₹ 250</span>
-                    <button data-pizza="%= JSON.stringify(pizza) %>"
-                        class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
-                        <span>+</span>
-                        <span class="ml-4">Add</span>
-                    </button>
+
+        <!-- neeche wala part hme repeat krna h. -->
+        <!-- array hai isliye forEach loop lagega, ab forEach loop hme function provide krta h toh uske andr function aayega. function ke andr current iteration jo h vo hmme recieve ho jayega. -->
+        <% pizzass.forEach(function(pizzas) { %>
+            <div class="w-full md:w-64">
+                <img class="h-40 mb-4 mx-auto" src="/img/<%= pizzas.image %>" alt="">
+                <div class="text-center">
+                    <h2 class="mb-4 text-lg">
+                        <%= pizzas.name %>
+                    </h2>
+                    <span class="size py-1 px-4 rounded-full uppercase text-xs">
+                        <%= pizzas.size %>
+                    </span>
+                    <div class="flex items-center justify-around mt-6">
+                        <span class="font-bold text-lg">₹ <%= pizzas.price %></span>
+                        <button data-pizza="%= JSON.stringify(pizza) %>"
+                            class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
+                            <span>+</span>
+                            <span class="ml-4">Add</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+            <% }) %>
+
 
     </div>
 </section>

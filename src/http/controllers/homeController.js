@@ -3,5 +3,11 @@ function homeController() {
 
   return {
     // object
+
+    index(req, res) {
+      res.render("home");
+    },
   };
 }
+
+module.exports = homeController;

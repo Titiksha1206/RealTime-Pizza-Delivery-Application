@@ -1,13 +1,24 @@
 const express = require("express");
 const ejs = require("ejs");
 const expressEjsLayouts = require("express-ejs-layouts");
-
-// inbuilt module h .
-const path = require("path");
+const mongoose = require("mongoose");
+const path = require("path"); // inbuilt module h .
 
 const app = express();
 
 const port = process.env.PORT || 3000;
+
+// database connections.
+const url = "mongodb://127.0.0.1";
+mongoose.connect(url, {});
+const connection = mongoose.connection;
+connection
+  .once("open", () => {
+    console.log("Database connected…");
+  })
+  .on("error", (err) => {
+    console.log("Connection failed...");
+  });
 
 // assets
 app.use(express.static("public"));

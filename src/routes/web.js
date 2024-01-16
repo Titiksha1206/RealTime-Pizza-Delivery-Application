@@ -1,23 +1,31 @@
+const homeController = require("../http/controllers/homeController");
+const authController = require("../http/controllers/authController");
+const cartController = require("../http/controllers/customers/cartController");
+const orderController = require("../http/controllers/customers/orderController");
+
 function initRoutes(app) {
-  app.get("/", (req, res) => {
-    //  home.ejs file is to keep html.
-    res.render("home");
-  });
+  app.get("/", homeController().index);
 
-  app.get("/cart", (req, res) => {
-    // display cart page.
-    res.render("customers/cart");
-  });
-
-  app.get("/login", (req, res) => {
+  app.get(
+    "/login",
+    authController().login
     // display login page.
-    res.render("auth/login");
-  });
+    // res.render("auth/login");
+  );
 
-  app.get("/register", (req, res) => {
+  app.get(
+    "/register",
+    authController().register
     // display register page.
-    res.render("auth/register");
-  });
+    // res.render("auth/register");
+  );
+
+  app.get(
+    "/cart",
+    cartController().index
+    // display cart page.
+  );
 }
+
 //  jo bhi aapko iss file se export krna h .
 module.exports = initRoutes;

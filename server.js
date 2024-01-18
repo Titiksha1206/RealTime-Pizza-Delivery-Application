@@ -1,7 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const ejs = require("ejs");
 const expressEjsLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const flash = require("express-flash");
+const MongoDbStore = require("connect-mongo");
+
 const path = require("path"); // inbuilt module h .
 
 const app = express();
@@ -21,8 +26,36 @@ connection
     console.log("Connection failed...");
   });
 
+// sesion store
+let mongoStore = MongoDbStore.create({
+  mongoUrl: url,
+  collectionName: "sessions",
+});
+
+//session config.
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    store: mongoStore,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // cookie valid for 24 hours.
+    // cookie: { maxAge: 1000 * 15 }, //  expires in 15 seconds
+  })
+);
+
+// flash middleware
+app.use(flash());
+
 // assets
 app.use(express.static("public"));
+app.use(express.json());
+
+//Global middlewares.
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next();
+});
 
 // express ko pata chlega ki konsa layout yaha pr use krna h.
 app.use(expressEjsLayouts);

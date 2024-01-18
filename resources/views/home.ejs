@@ -33,10 +33,14 @@
                     </span>
                     <div class="flex items-center justify-around mt-6">
                         <span class="font-bold text-lg">₹ <%= pizzas.price %></span>
-                        <button data-pizza="%= JSON.stringify(pizza) %>"
+
+                        <!-- data attribute ko hmm set karenge aur get karenge client(app.js) ke andr js ki help se... pizzas jo value provide kiya h data-pizza ko vo object h aur objects ko ase bind nhi kr sakte, isko hmee json string mai convert krna padega aur client ke andr vpas se json string se object mai change krenge.  -->
+                        <!-- ejs ke tag open krke hmm uske andr js ko add krna h . -->
+                        <button data-pizza="<%= JSON.stringify(pizzas) %>"
                             class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
                             <span>+</span>
                             <span class="ml-4">Add</span>
+
                         </button>
                     </div>
                 </div>

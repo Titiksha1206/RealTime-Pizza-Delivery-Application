@@ -23,6 +23,7 @@ function initRoutes(app) {
     cartController().index
     // display cart page.
   );
+  app.post("/update-cart", cartController().update);
 }
 
 //  jo bhi aapko iss file se export krna h .

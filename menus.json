@@ -4,25 +4,18 @@
     },
     "name": "Margherita Pizza",
     "image": "pizza.png",
-    "price": "250",
-    "size": "small"
+    "price": "350",
+    "size": "large"
   },{
     "_id": {
-      "$oid": "5eee6671a27a66807cf2bea3"
+      "$oid": "5eee6671a27a66807cf2be56"
     },
-    "name": "Non Veg Supreme Pizza",
-    "image":"chicken-supreme.png",
+    "name": "Cheese N Corn Pizza",
+    "image":"corn.png",
     "price": "300",
-    "size": "medium"
-  },{
-    "_id": {
-      "$oid": "5eee6692a27a66807cf2bea4"
-    },
-    "name": " Hawaiian Pizza",
-    "image": "Hawaiian-Pizza.png",
-    "price": "200",
     "size": "small"
-  },{
+  },
+  {
     "_id": {
       "$oid": "5eee66a5a27a66807cf2bea5"
     },
@@ -32,28 +25,38 @@
     "size": "large"
   },{
     "_id": {
-      "$oid": "5eee66c4a27a66807cf2bea6"
+      "$oid": "5eee6692a27a66807cf2bea4"
     },
-    "name": "BBQ Chicken Pizza",
-    "image": "chicken-pizza.png",
-    "price": "350",
-    "size": "medium"
-  },{
+    "name": " Pizza",
+    "image": "yummy.png",
+    "price": "370",
+    "size": "small"
+  },
+  {
     "_id": {
       "$oid": "5eee66cfa27a66807cf2bea7"
     },
     "name": "Non Veg Loaded Pizza",
     "image": "overloaded-nonveg.png",
-    "price": "200",
-    "size": "small"
+    "price": "400",
+    "size": "medium"
+  },
+  { 
+    "_id": {
+      "$oid": "5eee612a27a66807cf2be112"
+    },
+    "name": "Mac N Cheese Pizza",
+    "image": "Mac-and-cheese.png",
+    "price": "450",
+    "size": "medium"
   },{
     "_id": {
       "$oid": "5eee66eea27a66807cf2bea8"
     },
-    "name": "Veggie Pizza",
+    "name": "Deluxe Veggie Pizza",
     "image": "veggiee.png",
     "price": "600",
-    "size": "large"
+    "size": "medium"
   },{ 
     "_id": {
       "$oid": "5eee6717a27a66807cf2bea9"
@@ -61,5 +64,41 @@
     "name": "Pepperoni Pizza",
     "image": "Pepperoni.jpg",
     "price": "500",
+    "size": "large"
+  },{
+    "_id": {
+      "$oid": "5eee66c4a27a66807cf2bea6"
+    },
+    "name": "BBQ Chicken Pizza",
+    "image": "chicken-pizza.png",
+    "price": "350",
+    "size": "small"
+  },
+  { 
+    "_id": {
+      "$oid": "5eee612a27a66807cf2bea10"
+    },
+    "name": "Mushroom-Fontina Pizza",
+    "image": "mushroom-Pizza.png",
+    "price": "450",
     "size": "medium"
-  }]
+  },
+  {
+    "_id": {
+      "$oid": "5eee6692a27a66807cf2be43"
+    },
+    "name": " Hawaiian Pizza",
+    "image": "Hawaiian-Pizza.png",
+    "price": "270",
+    "size": "small"
+  },
+  {
+    "_id": {
+      "$oid": "5eee6671a27a66807cf2bea3"
+    },
+    "name": "Non Veg Supreme Pizza",
+    "image":"chicken-supreme.png",
+    "price": "300",
+    "size": "small"
+  }
+]

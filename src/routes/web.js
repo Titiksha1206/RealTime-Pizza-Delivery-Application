@@ -17,6 +17,7 @@ function initRoutes(app) {
     authController().register
     // display register page.
   );
+  app.post("/register", authController().postRegister);
 
   app.get(
     "/cart",

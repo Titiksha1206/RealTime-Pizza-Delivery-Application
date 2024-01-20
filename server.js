@@ -39,6 +39,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     store: mongoStore,
+    httpOnly: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // cookie valid for 24 hours.
     // cookie: { maxAge: 1000 * 15 }, //  expires in 15 seconds
@@ -57,6 +58,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/");
+});
 
 // flash middleware
 app.use(flash());

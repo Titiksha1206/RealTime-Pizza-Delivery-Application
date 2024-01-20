@@ -30,14 +30,7 @@ function initRoutes(app) {
   );
   app.post("/update-cart", cartController().update);
 
-  app.post("/logout", function (req, res, next) {
-    req.logout(function (err) {
-      if (err) {
-        return next(err);
-      }
-      res.redirect("/login");
-    });
-  });
+  app.post("/orders", orderController().store);
 }
 
 //  jo bhi aapko iss file se export krna h .

@@ -31,7 +31,7 @@ connection
 let mongoStore = MongoDbStore.create({
   mongoUrl: url,
   collectionName: "sessions",
-  ttl: 60 * 60 * 24,
+  // ttl: 60 * 60 * 24,
 });
 
 //session config.
@@ -42,13 +42,16 @@ app.use(
     store: mongoStore,
     saveUninitialized: false,
     cookie: {
-      secure: true,
       maxAge: 1000 * 60 * 60 * 24, // cookie valid for 24 hours.
-      sameSite: "None",
     },
     // cookie: { maxAge: 1000 * 15 }, //  expires in 15 seconds
   })
 );
+
+app.get("/setCookie", (req, res) => {
+  res.setHeader("Set-Cookie", "myCookie=myCookieValue");
+  res.send("Cookie has been set!");
+});
 
 // passport config
 const passportInit = require("./src/config/passport");

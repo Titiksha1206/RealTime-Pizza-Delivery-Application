@@ -20,6 +20,7 @@ function orderController() {
         phone,
         address,
       });
+      //   console.log(req.user._id);
 
       order
         .save()
@@ -28,7 +29,8 @@ function orderController() {
           return res.redirect("/");
         })
         .catch((err) => {
-          req.flash("error", "Something went wrong");
+          //   req.flash("error", "Something went wrong");
+          console.log(err);
           return res.redirect("/cart");
         });
     },

@@ -31,6 +31,7 @@ connection
 let mongoStore = MongoDbStore.create({
   mongoUrl: url,
   collectionName: "sessions",
+  ttl: 60 * 60 * 24,
 });
 
 //session config.
@@ -39,9 +40,12 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     store: mongoStore,
-    httpOnly: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 }, // cookie valid for 24 hours.
+    cookie: {
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24, // cookie valid for 24 hours.
+      sameSite: "None",
+    },
     // cookie: { maxAge: 1000 * 15 }, //  expires in 15 seconds
   })
 );
@@ -61,7 +65,7 @@ app.use(passport.session());
 
 app.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/");
+  res.redirect("/login");
 });
 
 // flash middleware

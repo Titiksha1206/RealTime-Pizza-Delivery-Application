@@ -3,6 +3,8 @@ const Order = require("../../../models/orderModels");
 function orderController() {
   return {
     store(req, res) {
+      console.log(req.body);
+
       // Validate request
       const { phone, address } = req.body;
 

@@ -31,7 +31,6 @@ connection
 let mongoStore = MongoDbStore.create({
   mongoUrl: url,
   collectionName: "sessions",
-  // ttl: 60 * 60 * 24,
 });
 
 //session config.
@@ -47,28 +46,6 @@ app.use(
     // cookie: { maxAge: 1000 * 15 }, //  expires in 15 seconds
   })
 );
-
-// app.get("/setSecureCookie", (req, res) => {
-//   res.cookie(
-//     "connect.sid",
-//     '"s%3AiRCvX-7uPSy7J_aAiALjnfec1hsEUBrs.dPQPQKqmzDVnYqtjmoV2SHNwUy6kK%2F0OkZbLpaynUeQ"',
-//     {
-//       httpOnly: true,
-//       secure: false, // Set to true if using HTTPS
-//       sameSite: "None", // Set to 'None' for cross-site cookies
-//     }
-//   );
-//   res.send("Secure cookie has been set!");
-// });
-
-// connect.sid:"s%3AiRCvX-7uPSy7J_aAiALjnfec1hsEUBrs.dPQPQKqmzDVnYqtjmoV2SHNwUy6kK%2F0OkZbLpaynUeQ"
-app.get("/setCookie", (req, res) => {
-  res.setHeader(
-    "Set-Cookie",
-    "connect.sid=s%3AiRCvX-7uPSy7J_aAiALjnfec1hsEUBrs.dPQPQKqmzDVnYqtjmoV2SHNwUy6kK%2F0OkZbLpaynUeQ"
-  );
-  res.send("Cookie has been set!");
-});
 
 // passport config
 const passportInit = require("./src/config/passport");

@@ -1,5 +1,6 @@
 const Order = require("../../../models/orderModels");
 const moment = require("moment");
+const { ObjectId } = require("mongodb");
 
 function orderController() {
   return {
@@ -36,6 +37,7 @@ function orderController() {
           return res.redirect("/cart");
         });
     },
+
     async index(req, res) {
       // fetching orders.
       const orders = await Order.find({ customerId: req.user._id }, null, {
@@ -44,6 +46,17 @@ function orderController() {
       // res.header("Cache-Control", "no-store");
       res.render("customers/orders", { orders: orders, moment: moment }); // frontend pr(order.ejs file) display karvaye data.
       // console.log(orders);
+    },
+
+    async show(req, res) {
+      const order = await Order.findById(req.params._id);
+
+      //authorize user.
+
+      if (JSON.stringify(req.user._id) === JSON.stringify(order.customerId)) {
+        return res.render("customers/singleOrder", { order });
+      }
+      return res.redirect("/");
     },
   };
 }

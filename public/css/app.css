@@ -79,7 +79,7 @@ a.link {
 
 section.status {
   background: #e1d9cf;
-  min-height: calc(100vh - 86px);
+  min-height: 100vh;
 }
 
 .status-box {
@@ -159,15 +159,15 @@ section.status {
 }
 
 .status-box ul li.step-completed:before {
-  background: #e1d9cf;
+  background: #e6ebf1;
 }
 
 .status-box ul li.step-completed span:after {
-  background: #e1d9cf;
+  background: #e6ebf1;
 }
 
 .status-box ul li.step-completed span {
-  color: #e1d9cf;
+  color: #e6ebf1;
 }
 
 .status-box ul li.current span {

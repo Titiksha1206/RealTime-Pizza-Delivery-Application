@@ -79,7 +79,9 @@ a.link {
 
 section.status {
     background: $secondary;
-    min-height: calc(100vh - 86px);
+    // min-height: calc(100vh - 86px);
+    min-height: calc(100vh);
+    
 }
 .status-box {
     padding: 60px 0 0;

@@ -3,6 +3,7 @@ const authController = require("../http/controllers/authController");
 const cartController = require("../http/controllers/customers/cartController");
 const orderController = require("../http/controllers/customers/orderController");
 const adminOrderController = require("../http/controllers/admin/orderController");
+const statusController = require("../http/controllers/admin/statusController");
 
 //middlewares
 const guest = require("../http/middlewares/guest");
@@ -38,9 +39,11 @@ function initRoutes(app) {
   //customers route.
   app.post("/orders", auth, orderController().store);
   app.get("/customer/orders", auth, orderController().index);
+  app.get("/customer/orders/:_id", auth, orderController().show); // :_id means ki id dynamic parameter haii.
 
   //admin routes
-  app.get("/admin/orders", admin, adminOrderController().index);
+  app.get("/admin/orders", adminOrderController().index);
+  app.post("/admin/order/status", statusController().update);
 }
 
 //  jo bhi aapko iss file se export krna h .

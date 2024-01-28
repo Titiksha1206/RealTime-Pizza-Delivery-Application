@@ -29,7 +29,8 @@
     "mongoose": "^8.0.4",
     "moongoose": "^0.0.5",
     "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.7.4"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",

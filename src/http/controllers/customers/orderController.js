@@ -17,19 +17,51 @@ function orderController() {
       }
 
       const order = new Order({
-        customerId: req.user._id,
+        customerId: req.user._id, // Set the customerId to the logged-in user's id.
         items: req.session.cart.items,
         phone,
         address,
       });
 
+      // try {
+      //   const result = await order.save();
+      //       const placedOrder = await Order.populate(result, { path: "customerId" });
+      //       req.flash("success", "Order placed successfully");
+      //       delete req.session.cart;
+      //       // Emit
+      //       const eventEmitter = req.app.get("eventEmitter");
+      //       eventEmitter.emit("orderPlaced", placedOrder);
+
+      //       //empty krenge cart ko.
+
+      //       return res.redirect("/customer/orders");
+
+      //   }
+      //   catch(err)  {
+      //     req.flash("error", "Something went wrong");
+      //     //   console.log(err);
+      //     return res.redirect("/cart");
+      //   };
+
       order
         .save()
         .then((result) => {
-          req.flash("success", "Order placed successfully");
-          //empty krenge cart ko.
-          delete req.session.cart;
-          return res.redirect("/customer/orders");
+          // Populate the user details in the order
+          Order.populate(result, { path: "customerId" }, (err, placedOrder) => {
+            if (err) {
+              console.error(err);
+              req.flash("error", "Something went wrong");
+              return res.redirect("/cart");
+            }
+            req.flash("success", "Order placed successfully");
+            // Emit
+            const eventEmitter = req.app.get("eventEmitter");
+            eventEmitter.emit("orderPlaced", placedOrder);
+
+            //empty krenge cart ko.
+            delete req.session.cart;
+            return res.redirect("/customer/orders");
+          });
         })
         .catch((err) => {
           req.flash("error", "Something went wrong");

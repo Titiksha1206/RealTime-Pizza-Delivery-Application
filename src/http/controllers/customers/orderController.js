@@ -4,7 +4,7 @@ const { ObjectId } = require("mongodb");
 
 function orderController() {
   return {
-    store(req, res) {
+    async store(req, res) {
       //   console.log(req.body);
 
       // Validate request
@@ -23,51 +23,51 @@ function orderController() {
         address,
       });
 
-      // try {
-      //   const result = await order.save();
-      //       const placedOrder = await Order.populate(result, { path: "customerId" });
-      //       req.flash("success", "Order placed successfully");
-      //       delete req.session.cart;
-      //       // Emit
-      //       const eventEmitter = req.app.get("eventEmitter");
-      //       eventEmitter.emit("orderPlaced", placedOrder);
-
-      //       //empty krenge cart ko.
-
-      //       return res.redirect("/customer/orders");
-
-      //   }
-      //   catch(err)  {
-      //     req.flash("error", "Something went wrong");
-      //     //   console.log(err);
-      //     return res.redirect("/cart");
-      //   };
-
-      order
-        .save()
-        .then((result) => {
-          // Populate the user details in the order
-          Order.populate(result, { path: "customerId" }, (err, placedOrder) => {
-            if (err) {
-              console.error(err);
-              req.flash("error", "Something went wrong");
-              return res.redirect("/cart");
-            }
-            req.flash("success", "Order placed successfully");
-            // Emit
-            const eventEmitter = req.app.get("eventEmitter");
-            eventEmitter.emit("orderPlaced", placedOrder);
-
-            //empty krenge cart ko.
-            delete req.session.cart;
-            return res.redirect("/customer/orders");
-          });
-        })
-        .catch((err) => {
-          req.flash("error", "Something went wrong");
-          //   console.log(err);
-          return res.redirect("/cart");
+      try {
+        const result = await order.save();
+        const placedOrder = await Order.populate(result, {
+          path: "customerId",
         });
+        req.flash("success", "Order placed successfully");
+        delete req.session.cart;
+        // Emit
+        const eventEmitter = req.app.get("eventEmitter");
+        eventEmitter.emit("orderPlaced", placedOrder);
+
+        //empty krenge cart ko.
+
+        return res.redirect("/customer/orders");
+      } catch (err) {
+        req.flash("error", "Something went wrong");
+        //   console.log(err);
+        return res.redirect("/cart");
+      }
+
+      // order
+      //   .save()
+      //   .then((result) => {
+      // Populate the user details in the order
+      // Order.populate(result, { path: "customerId" }, (err, placedOrder) => {
+      //   if (err) {
+      //     console.error(err);
+      //     req.flash("error", "Something went wrong");
+      //     return res.redirect("/cart");
+      //   }
+      //   req.flash("success", "Order placed successfully");
+      // Emit
+      // const eventEmitter = req.app.get("eventEmitter");
+      // eventEmitter.emit("orderPlaced", placedOrder);
+
+      //empty krenge cart ko.
+      //     delete req.session.cart;
+      //     return res.redirect("/customer/orders");
+      //   });
+      // })
+      // .catch((err) => {
+      //   req.flash("error", "Something went wrong");
+      //   console.log(err);
+      //       return res.redirect("/cart");
+      //     });
     },
 
     async index(req, res) {

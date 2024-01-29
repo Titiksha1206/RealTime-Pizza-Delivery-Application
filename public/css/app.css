@@ -114,6 +114,10 @@ a.link {
   color: #126068;
 }
 
+.orders {
+  background: #ededed;
+}
+
 section.status {
   background: #e1d9cf;
   min-height: 100vh;
@@ -221,19 +225,58 @@ section.status {
   margin-top: 8px;
 }
 
+.navbar-brand {
+  display: inline-block;
+}
+
+.navbar-atag {
+  display: inline-block;
+}
+
 @media (max-width: 1060px) {
-  .container {
-    max-width: 70%;
-  }
   table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
   }
 }
+@media (max-width: 1280px) {
+  .cart-name {
+    font-size: 2em;
+    font-weight: 500;
+  }
+  .navbar-atag1 {
+    display: none;
+  }
+}
 @media (max-width: 768px) {
   .status-box ul li span:before {
     font-size: 34px;
+  }
+  .cart-name {
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
+@media (min-width: 300px) and (max-width: 560px) {
+  .navbar-brand {
+    display: none; /* Hide the text by setting visibility to hidden */
+  }
+  .navbar-atag1 {
+    display: block;
+    width: 48px;
+    height: 42px;
+    max-width: 3.7em;
+  }
+  .navbar-list ul li {
+    margin-left: 12px;
+  }
+  .navbar-brand2 {
+    text-decoration: none;
+    color: #ededed;
+  }
+  .footer-list {
+    text-align: center;
   }
 }
 .StripeElement {

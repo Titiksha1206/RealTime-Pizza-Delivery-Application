@@ -81,6 +81,30 @@ section.login a:hover {
   text-decoration: none;
 }
 
+.text-body {
+  text-decoration: none;
+}
+
+.text-reset {
+  text-decoration: none;
+}
+
+.Copyright {
+  background: #091d26;
+  color: #ededed;
+}
+
+.footer {
+  background: #102937;
+  color: #ededed;
+}
+
+.footer-link {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .noty_theme__mint {
   border-radius: 50px !important;
   padding-left: 8px !important;

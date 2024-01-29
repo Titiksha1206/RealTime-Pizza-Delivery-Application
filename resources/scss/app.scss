@@ -78,8 +78,31 @@ section.login {
 .inline-block{
     text-decoration: none;
 }
+
 .link{
     text-decoration: none;
+}
+
+.text-body{
+    text-decoration: none;
+}
+
+.text-reset{
+    text-decoration: none;
+}
+
+.Copyright{
+    background: #091d26;
+    color: $gray;
+}
+.footer{
+    background: $dark;
+    color: $gray;
+}
+.footer-link{
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .noty_theme__mint {
     border-radius: 50px!important;

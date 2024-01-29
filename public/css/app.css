@@ -172,15 +172,15 @@ section.status {
 }
 
 .status-box ul li.step-completed:before {
-  background: #e6ebf1;
+  background: #ededed;
 }
 
 .status-box ul li.step-completed span:after {
-  background: #e6ebf1;
+  background: #ededed;
 }
 
 .status-box ul li.step-completed span {
-  color: #e6ebf1;
+  color: #ededed;
 }
 
 .status-box ul li.current span {

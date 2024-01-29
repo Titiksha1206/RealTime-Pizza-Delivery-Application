@@ -50,6 +50,10 @@ section.hero {
   background: #094044;
 }
 
+.grid {
+  gap: 37px;
+}
+
 section.cart {
   background: #e1d9cf;
 }
@@ -186,7 +190,7 @@ section.status {
 
 @media (max-width: 1060px) {
   .container {
-    max-width: 90%;
+    max-width: 70%;
   }
   table {
     display: block;

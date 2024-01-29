@@ -56,6 +56,7 @@ section.hero {
 
 section.cart {
   background: #e1d9cf;
+  min-height: 100vh;
 }
 section.cart .amount {
   color: #126068;
@@ -70,6 +71,14 @@ section.login a {
 }
 section.login a:hover {
   color: #094044;
+}
+
+.inline-block {
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .noty_theme__mint {

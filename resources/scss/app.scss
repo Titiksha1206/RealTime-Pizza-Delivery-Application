@@ -54,8 +54,10 @@ section.hero {
 .grid{
     gap: 37px;
 }
+
 section.cart {
     background: $secondary;
+    min-height: calc(100vh);
     
     .amount {
         color: $primary;
@@ -71,6 +73,13 @@ section.login {
             color: $primary-hover;
         }
     }
+}
+
+.inline-block{
+    text-decoration: none;
+}
+.link{
+    text-decoration: none;
 }
 .noty_theme__mint {
     border-radius: 50px!important;

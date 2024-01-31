@@ -2,6 +2,8 @@
 const axios = require("axios");
 const moment = require("moment");
 const initAdmin = require("../../resources/js/admin");
+import { initStripe } from "./stripe";
+// const initStripe = require("./stripe");
 
 let addToCart = document.querySelectorAll(".add-to-cart"); // queryselectorAll krna h kyuki sare buttons hme chahiye haii.
 
@@ -69,6 +71,8 @@ function updateStatus(order) {
 }
 
 updateStatus(order);
+
+initStripe();
 
 // Socket
 let socket = io();

@@ -115,6 +115,10 @@ a.link {
 .orders{
     background: $gray;
 }
+.navbar-brand2{
+    text-decoration: none;
+    color: $gray;
+}
 section.status {
     background: $secondary;
     // min-height: calc(100vh - 86px);
@@ -270,11 +274,11 @@ section.status {
      .navbar-list ul li {
                 margin-left: 12px;
             }
-            .navbar-brand2{
+    .navbar-brand2{
                 text-decoration: none;
                 color: $gray;
             }
-            .footer-list{
+    .footer-list{
                 text-align: center;
             }
            

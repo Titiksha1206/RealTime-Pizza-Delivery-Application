@@ -118,6 +118,11 @@ a.link {
   background: #ededed;
 }
 
+.navbar-brand2 {
+  text-decoration: none;
+  color: #ededed;
+}
+
 section.status {
   background: #e1d9cf;
   min-height: 100vh;

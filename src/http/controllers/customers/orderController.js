@@ -1,19 +1,21 @@
 const Order = require("../../../models/orderModels");
 const moment = require("moment");
-const { ObjectId } = require("mongodb");
+// const { ObjectId } = require("mongodb");
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 function orderController() {
   return {
     async store(req, res) {
-      //   console.log(req.body);
+      // console.log(req.body);
 
       // Validate request
-      const { phone, address } = req.body;
+      const { phone, address, stripeToken, paymentType } = req.body;
 
       if (!phone || !address) {
-        //  return res.status(422).json({ message : 'All fields are required' });
-        req.flash("error", "All fields are required.");
-        return res.redirect("/cart");
+        //ajax.
+        return res.status(422).json({ message: "All fields are required" });
+        // req.flash("error", "All fields are required.");
+        // return res.redirect("/cart");
       }
 
       const order = new Order({
@@ -23,51 +25,115 @@ function orderController() {
         address,
       });
 
-      try {
-        const result = await order.save();
-        const placedOrder = await Order.populate(result, {
-          path: "customerId",
-        });
-        req.flash("success", "Order placed successfully");
-        delete req.session.cart;
-        // Emit
-        const eventEmitter = req.app.get("eventEmitter");
-        eventEmitter.emit("orderPlaced", placedOrder);
-
-        //empty krenge cart ko.
-
-        return res.redirect("/customer/orders");
-      } catch (err) {
-        req.flash("error", "Something went wrong");
-        //   console.log(err);
-        return res.redirect("/cart");
-      }
-
-      // order
-      //   .save()
-      //   .then((result) => {
-      // Populate the user details in the order
-      // Order.populate(result, { path: "customerId" }, (err, placedOrder) => {
-      //   if (err) {
-      //     console.error(err);
-      //     req.flash("error", "Something went wrong");
-      //     return res.redirect("/cart");
-      //   }
-      //   req.flash("success", "Order placed successfully");
-      // Emit
-      // const eventEmitter = req.app.get("eventEmitter");
-      // eventEmitter.emit("orderPlaced", placedOrder);
-
-      //empty krenge cart ko.
-      //     delete req.session.cart;
-      //     return res.redirect("/customer/orders");
+      // try {
+      //   const result = await order.save();
+      //   const placedOrder = await Order.populate(result, {
+      //     path: "customerId",
       //   });
-      // })
-      // .catch((err) => {
-      //   req.flash("error", "Something went wrong");
-      //   console.log(err);
-      //       return res.redirect("/cart");
-      //     });
+      //   // req.flash("success", "Order placed successfully");
+
+      //   // Stripe payment
+      //   if (paymentType === "card") {
+      //     stripe.charges
+      //       .create({
+      //         amount: req.session.cart.totalPrice * 100,
+      //         source: stripeToken,
+      //         currency: "inr",
+      //         description: `Pizza order: ${placedOrder._id}`,
+      //       })
+      //       .then(() => {
+      //         placedOrder.paymentStatus = true;
+      //         placedOrder.paymentType = paymentType;
+      //         placedOrder
+      //           .save()
+      //           .then((ord) => {
+      //             // Emit
+      //             const eventEmitter = req.app.get("eventEmitter");
+      //             eventEmitter.emit("orderPlaced", ord);
+
+      //             //empty krenge cart ko.
+      //             delete req.session.cart;
+
+      //             return res.json({
+      //               message: "Payment successful, Order placed successfully",
+      //             });
+
+      //             // return res.redirect("/customer/orders");
+      //           })
+      //           .catch((err) => {
+      //             console.log(err);
+      //           });
+      //       })
+      //       .catch((err) => {
+      //         delete req.session.cart;
+      //         return res.json({
+      //           message:
+      //             "OrderPlaced but payment failed, You can pay at delivery time",
+      //         });
+      //       });
+      //   } else {
+      //     delete req.session.cart;
+      //     return res.json({ message: "Order placed succesfully" });
+      //   }
+      // } catch (err) {
+      //   return res.status(500).json({ message: "Something went wrong" });
+      // }
+
+      order
+        .save()
+        .then((result) => {
+          Order.populate(result, { path: "customerId" })
+            .then((placedOrder) => {
+              // req.flash('success', 'Order placed successfully')
+
+              // Stripe payment
+              if (paymentType === "card") {
+                stripe.charges
+                  .create({
+                    amount: req.session.cart.totalPrice * 100,
+                    source: stripeToken,
+                    currency: "inr",
+                    description: `Pizza order: ${placedOrder._id}`,
+                  })
+                  .then(() => {
+                    placedOrder.paymentStatus = true;
+                    placedOrder.paymentType = paymentType;
+                    placedOrder
+                      .save()
+                      .then((ord) => {
+                        // Emit
+                        const eventEmitter = req.app.get("eventEmitter");
+                        eventEmitter.emit("orderPlaced", ord);
+                        delete req.session.cart;
+                        return res.json({
+                          message:
+                            "Payment successful, Order placed successfully",
+                        });
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  })
+                  .catch((err) => {
+                    delete req.session.cart;
+                    return res.json({
+                      message:
+                        "OrderPlaced but payment failed, You can pay at delivery time",
+                    });
+                  });
+              } else {
+                delete req.session.cart;
+                return res.json({ message: "Order placed succesfully" });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              return res.status(500).json({ message: "Something went wrong" });
+            });
+        })
+        .catch((err) => {
+          return res.status(500).json({ message: "Something went wrong" });
+        });
     },
 
     async index(req, res) {

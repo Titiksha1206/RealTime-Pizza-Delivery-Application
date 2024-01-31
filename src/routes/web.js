@@ -42,8 +42,8 @@ function initRoutes(app) {
   app.get("/customer/orders/:_id", auth, orderController().show); // :_id means ki id dynamic parameter haii.
 
   //admin routes
-  app.get("/admin/orders", admin, adminOrderController().index);
-  app.post("/admin/order/status", admin, statusController().update);
+  app.get("/admin/orders", adminOrderController().index);
+  app.post("/admin/order/status", statusController().update);
 }
 
 //  jo bhi aapko iss file se export krna h .
